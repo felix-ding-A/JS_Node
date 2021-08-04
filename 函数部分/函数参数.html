@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 求参数的和
+        function fn() {
+            let sum = 0;
+            for (let i = 0; i < arguments.length; i++) {
+                sum += arguments[i];
+            }
+            return sum;
+        }
+        let sum = fn(12, 13, 14, 23, 35, 16);
+        console.log(sum);
+
+        // 求参数的成积
+        function product() {
+            let res = 1;
+            for (let i = 0; i < arguments.length; i++) {
+                res *= arguments[i];
+            }
+            return res;
+        }
+        let result = product(12, 13, 14, 23, 35, 16);
+        console.log(result);
+
+        // 求参数的平均数
+        function average() {
+            let add = 0;
+            let averNum = 0;
+            for (let i = 0; i < arguments.length; i++) {
+                add += arguments[i];
+                averNum = parseInt(add / arguments.length);
+            }
+            return averNum;
+        }
+        let result1 = average(12, 13, 14, 23, 35, 16);
+        console.log(result1);
+
+
+        function average1() { // 调用上面的求和结果
+            return sum / arguments.length;
+        }
+        let result2 = average1(12, 13, 14, 23, 35, 16);
+        console.log(result2);
+
+        // 求参数的最大、最小值
+        function num() {
+            let a = arguments[0]; //假设最大值a我arguments的第一个
+            let b = arguments[0];
+            for (let i = 0; i < arguments.length; i++) {
+                if (a < arguments[i]) {
+                    a = arguments[i];
+                }
+            }
+            return a;
+        }
+        let max = num(12, 13, 14, 23, 35, 16);
+        console.log(max);
+
+
+        // 数组排序
+        function arrSolt(sss) {
+            const arr = [2, 12, 67, 34, 4, 12, 78, 4, 5];
+            for (let i = 0; i < arr.length - 1; i++) {
+                for (let j = 0; j < arr.length - 1 - i; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        // 交换变量
+                        let newArr = arr[j + 1];
+                        arr[j + 1] = arr[j];
+                        arr[j] = newArr;
+                    }
+                }
+            }
+            return arr;
+        }
+        console.log(arrSolt());
+
+        // sort排序
+        const arr1 = [2, 12, 67, 34, 4, 12, 78, 4, 5];
+        arr1.sort(function(a, b) {
+            return b - a;
+        });
+        console.log(arr1);
+
+        // 子调用函数
+        (function() {
+            console.log(1234);
+        })();
+        let aaa = (function() {
+            console.log(12345);
+        })();
+
+        // 回调函数
+        function fun(callback) {
+            callback();
+        }
+        fun(function() {
+            console.log(1111111);
+        });
+    </script>
+</body>
+
+</html>

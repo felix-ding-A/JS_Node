@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日历生成器</title>
+    <style>
+        table {
+            width: 700px;
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+        
+        td,
+        th {
+            padding: 5px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>日历生成器</h1>
+    <hr> 本月多少天：
+    <input type="number" max="31" min="28" id="dayInput"><br> 一号星期几：
+    <select id="weekSelect">
+        <option value="0">星期日</option>
+        <option value="1">星期一</option>
+        <option value="2">星期二</option>
+        <option value="3">星期三</option>
+        <option value="4">星期四</option>
+        <option value="5">星期五</option>
+        <option value="6">星期六</option>
+    </select>（星期日写0）
+    <br>
+    <button id="btn">生成日历</button>
+    <br>
+    <br>
+    <br>
+    <div id="box">
+
+    </div>
+    <script>
+        btn.onclick = creatTable;
+
+        function creatTable() {
+            let box = document.getElementById('box');
+            let btn = document.getElementById('btn');
+            // 获取一号是星期几
+            let weekDay = +document.getElementById('weekSelect').value;
+            console.log(weekDay);
+            // 字符串转数字 前面放+号
+            let days = +document.getElementById('dayInput').value;
+            console.log(days);
+            // 验证用户输入天数合法性
+            if (days < 28 || days > 31) {
+                alert('输入无效');
+                return;
+            }
+
+            // 计算行数
+            let rows = Math.ceil((days + weekDay) / 7);
+            // 定义变量 表示日期
+            let date = 1;
+
+            let html = '<table>';
+            html += '<tr><th>星期日</th><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th><th>星期五</th><th>星期六</th></tr>'
+            html += '<table>';
+
+            // 循环输出每一行
+            for (let i = 0; i < rows; i++) {
+                html += '<tr>';
+                // 单元格7个
+                for (let j = 0; j < 7; j++) {
+                    // 第一行
+                    // 
+                    // 其他行
+                    // (i > 0 && date <= days)
+                    if ((i == 0 && j >= weekDay) || (i > 0 && date <= days)) {
+                        var content = date;
+                        date++;
+                    } else {
+                        var content = ' ';
+                    }
+                    html += '<td>' + content + '</td>';
+                }
+                html += '</tr>';
+            }
+
+            box.innerHTML = html;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 打印0-100之间的所有偶数
+        console.log('打印0-100之间的所有偶数');
+
+        function getEvenNum() {
+            for (let i = 0; i <= 100; i++) {
+                let evenNum = 2 * i;
+                if (evenNum <= 100) {
+                    console.log(evenNum);
+                }
+            }
+        }
+        getEvenNum();
+
+        // 打印0-100之间的所有奇数
+        console.log('打印0-100之间的所有奇数');
+
+        function getOddNum() {
+            let i = 1;
+            do {
+                console.log(2 * i - 1);
+                i++;
+            }
+            while (2 * i - 1 < 100);
+        }
+        getOddNum();
+
+        // 求100-200之间能被3或7整除的数  整除divisible
+        console.log('求100-200之间能被3或7整除的数');
+        let divisible = function() {
+            for (let i = 100; i <= 200; i++) {
+                if (i % 3 == 0 || i % 7 == 0) {
+                    console.log(i);
+                }
+            }
+        };
+        divisible();
+
+
+        // 输出三位数百位上有3且十位上有7的数字
+        console.log('输出三位数百位上有3且十位上有7的数字');
+        (function() {
+            for (let i = 100; i <= 999; i++) {
+                //   parseInt(i/100)==3&&(Math.floor(i%100/10))==7
+                if (parseInt(i / 100) == 3 && (Math.floor(i % 100 / 10)) == 7) {
+                    console.log(i);
+                }
+            }
+        })()
+
+        // 打印100的阶乘1*2*3...*100
+        console.log('打印100的阶乘1*2*3...*100');
+
+        function result() {
+            let result = 1;
+            for (let i = 1; i <= 100; i++) {
+                result *= i;
+            }
+            console.log(result);
+        }
+        result();
+
+        // 求1！+2！+3！+...+20！的值
+        console.log('求1！+2！+3！+...+20！的值');
+
+        function result1() {
+            let sum = 0;
+            for (let i = 1; i <= 4; i++) {
+                let product = 1;
+                for (let j = 1; j <= i; j++) {
+                    product *= j;
+                }
+                sum += product;
+            }
+            console.log(sum);
+        }
+        result1();
+
+        // 打印三位数水仙花数(Narcissistic Number)。水仙花数是指一个 3 位数，它的每个位上的数字的 3次幂之和等于它本身（例如：1^3 + 5^3+ 3^3 = 153）。
+        function narNum() {
+            console.log('打印水仙花数');
+            // 百位 parseInt(i/100) 十位 Math.floor(i%100/10)  个位i%10  三次方Math.pow()
+            for (let i = 100; i <= 999; i++) {
+                // 将i的百位十位个位分别赋值给变量abc
+                let a = parseInt(i / 100);
+                let b = Math.floor(i % 100 / 10);
+                let c = Math.floor(i % 10);
+                if (Math.pow(a, 3) + Math.pow(b, 3) + Math.pow(c, 3) == i) {
+                    console.log(i);
+                }
+            }
+        }
+        narNum();
+
+        // 使用*做一个三角形（正放的直角三角形）
+        document.write('正放的直角三角形<br>');
+
+        function triangle1() {
+            for (let i = 1; i <= 5; i++) {
+                for (let j = 1; j <= i; j++) {
+                    document.write('⭐');
+                }
+                document.write('<br>');
+            }
+        }
+        triangle1();
+        document.write('倒放的直角三角形<br>');
+
+        function triangle2() {
+            for (let i = 1; i <= 5; i++) {
+                for (let j = 0; j <= 5 - i; j++) {
+                    document.write('⭐');
+                }
+                document.write('<br>');
+            }
+        }
+        triangle2();
+        document.write('等腰三角形<br>');
+
+        function triangle3() {
+            for (let i = 0; i <= 5; i++) {
+                for (let j = 0; j <= 5 - i; j++) {
+                    document.write('&nbsp;&nbsp;');
+                }
+                for (let k = 0; k <= i; k++) {
+                    document.write('⭐');
+                }
+                document.write('<br>');
+            }
+        }
+        triangle3();
+        document.write('叠加两个等腰三角形（菱形）<br>');
+
+        function triangle4() {
+            for (let i = 0; i <= 5; i++) {
+                for (let j = 0; j <= 5 - i; j++)
+                    document.write('&nbsp;&nbsp;');
+                for (let k = 0; k <= i; k++)
+                    document.write('⭐');
+                document.write('<br>');
+            }
+            for (let i = 0; i <= 5; i++) {
+                for (let j = 0; j <= i; j++)
+                    document.write('&nbsp;&nbsp;');
+                // 花括号中有一行代码，可以省略花括号
+                for (let k = 0; k <= 5 - i; k++)
+                    document.write('⭐');
+                document.write('<br>');
+            }
+        }
+        triangle4();
+        document.write('打印99乘法表<br>');
+
+        function multTable() {
+            for (let i = 1; i <= 9; i++) {
+                document.write('<br>');
+                for (let j = 1; j <= i; j++) {
+                    if (i * j < 10) {
+                        let text_a = j * i + '&nbsp;&nbsp;';
+                        let text = j + '×' + i + '=' + text_a + '&nbsp;&nbsp;&nbsp;&nbsp;';
+                        document.write(text);
+                    } else {
+                        document.write(j + '×' + i + '=' + j * i + '&nbsp;&nbsp;&nbsp;&nbsp;');
+                    }
+                }
+            }
+        }
+        multTable();
+
+
+
+
+        // 求100-200之间的所有素数（一个大于1的正整数，如果除了1和它本身以外，不能被其他正整数整除，如2，3，5，7，11，13，17…。）
+        // console.log('求100-200之间的素数');
+        // let n = 0;
+        // for (let i = 101; i <= 200; i++) {
+        //     let k = 1;
+        //     for (let j = 2; j <= 9; j++) {
+        //         if (i % j == 0) {
+        //             k = 0;
+        //         }
+        //         if (k) {
+        //             n += 1;
+        //             console.log(i);
+        //         }
+        //     }
+        // }
+        // console.log(n);
+    </script>
+</body>
+
+</html>
