@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>值类型和引用类型</title>
+</head>
+
+<body>
+    <script>
+        /*
+        值类型： 所有的原始类型都是值类型。 也叫不可变类型。
+        引用类型： 所有的对象类型都是引用类型。 也叫可变类型。
+
+        值类型和引用类型的区别
+        内存存储形式不同； 值类型存储在栈结构中； 引用类型栈结构中存的是地址， 对象存在堆结构中。
+        如果一个变量的值是引用类型， 变量1赋值给变量2， 那么变量1和变量2会指向相同的一个对象
+
+        可变类型和不可变类型：
+        可变类型： 我们可以修改数组的元素， 可以修改对象的属性
+        不可变类型： 我们不能修改字符串或数字中一部分。
+        */
+
+        var objA1 = {
+            name: 100
+        };
+        var objA2 = objA1;
+        objA2.name = 200; //修改对象中的属性值
+        console.log(objA1.name); //堆内存地址不变，objA1中的值也会变
+
+
+        var obj1 = {
+            name: 100
+        };
+        var obj2 = obj1;
+        obj2 = {
+            name: 500
+        }; //重新给obj2一个值，原来的内存地址将会改变
+        console.log(obj1.name); //obj2在新地址中，obj1在旧地址中，因此obj2重新赋值后，obj1只会用原来的属性值
+
+
+        console.log('===================试题一=====================');
+
+        var num1 = 10;
+        var num2 = num1;
+        num1 = 20;
+        console.log(num1); //20
+        console.log(num2); //10
+
+        console.log('===================试题二=====================');
+
+        var numA = 50;
+        function f1(numA) { //numA为局部变量
+            numA = 60; //修改全局变量numA的值
+            console.log(numA); //60
+        }
+        f1(numA);
+        console.log(numA); //50
+
+        console.log('===================试题三=====================');
+
+        var numB1 = 55;
+        var numB2 = 66;
+
+        function f2(numX, numB1) {
+            numX = 100; //局部numX=100
+            numB1 = 100; //局部numB1=100
+            numB2 = 100; //全局numB2=100
+            console.log(numX); //100
+            console.log(numB1); //100
+            console.log(numB2); //100
+        }
+        f2(numB1, numB2);
+        console.log(numB1); //55
+        console.log(numB2); //100
+        //console.log(numX);  // numX is not defined  报错，所以注释掉
+
+        console.log('===================试题四=====================');
+
+        var a = 10;
+        var b = 20;
+
+        function add(a, b) {
+            a = 30; //局部变量
+            return a + b;
+        }
+        add(a, b);
+        console.log(a); //10
+
+        console.log('===================试题五=====================');
+
+        function fun(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                arr[i] += 2; //修改本作用域下的arr
+            }
+            console.log(arr);
+        }
+        // 由于数组是引用类型，修改引用类型中数组arr的值，堆内存中地址不变（全局变量arr把地址给了形参arr）
+        var arr;
+        arr = [1, 2];
+        fun(arr); // [3,4]
+        console.log(arr); // [3,4]
+
+        console.log('==============试题六（两个对象是同一个对象，不同操作有什么不同）===============');
+
+        var e = [1, 2];
+        var f = e;
+        e[0] = 20;
+        console.log(f); //[20,2]
+        e = [20, 2];
+        console.log(f); //[20,2]
+
+        console.log('===================试题七=====================');
+
+        function Person(name, age, salary) {
+            this.name = name;
+            this.age = age;
+            this.salary = salary;
+        }
+
+        function fn(pp) {
+            pp.name = 'ls';
+            pp = new Person('aa', 18, 10); //将pp的属性值重新赋值，会改变堆内存地址
+        }
+        var p = new Person('zs', 18, 1000);
+        console.log(p.name); //zs
+        fn(p);
+        console.log(p.name); //ls
+        // console.log(pp.name); //报错，is not defined
+    </script>
+</body>
+
+</html>

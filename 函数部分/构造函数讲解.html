@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 构造函数
+        // 作用：描述某一类对象
+        // JS中的构造函数相当于其他语言中的类（ES6也引入了类的概念）
+        // 每一个对象都有与之对应的构造函数
+        // 一个构造函数有多个对象，一个对象只有一个构造函数
+        // JS 中，所有的数组来自于同一个构造函数，所有的Object来自于同一个构造函数，所有的Function 也来自于同一个构造函数，所有的字符串也来自于同一个构造函数.....
+
+        // 判断对象的构造函数
+        // instanceof
+        const obj1 = {
+            name: 'zhangsan'
+        };
+        const obj2 = new Object();
+        const obj3 = [];
+        const mas = 'hello';
+        const num = 1212;
+        console.log(obj1 instanceof Object);
+        console.log(obj3 instanceof Array);
+        // 基本类型的判断
+        console.log(mas instanceof Object); //基本类型判断时会被当作值来判断
+        console.log(num instanceof Number);
+        // 基本类型可以包装成对象形态 如String Number Boolean，除了null和undefined
+        let num1 = new Number(123);
+        console.log(num1 instanceof Number);
+        let str = new String('asd#as');
+        console.log(str instanceof String);
+
+        // 所有的对象都有一个属性  constructor（构造器），返回值是该对象的构造函数
+        console.log(obj3.constructor);
+        console.log(num1.constructor);
+        console.log(str.constructor);
+        console.log((123).constructor);
+        console.log(123..constructor); //每个数字都有默认的.，在数字后面加.可以解决报错
+        console.log(num.constructor); //数字自动包装成对象形态
+
+
+        console.log('=============分割线============');
+
+
+        // 自定义构造函数(函数命名首字母大写)
+        // 通过构造函数规定对象的属性和方法
+        function Person() {
+            // 给对象设置属性  this
+            this.name = 'zhangsan';
+            this.age = 18;
+            this.weight = 120;
+            this.say = function() {
+                console.log('我叫' + this.name + '，今年' + this.age + '岁了');
+            }
+        }
+        //  对象的实例化（根据构造函数创造对象)
+        let p = new Person();
+        p.say();
+        let p1 = new Person();
+        console.log(p);
+        console.log('p和p1全等吗？' + p === p1);
+
+        // p的数据类型
+        console.log('p是数据类型' + typeof p);
+        console.log(p.constructor);
+
+        // 修改p中的属性，p1的属性不变
+        p.age = 35;
+        console.log(p1);
+
+        console.log('================分割线=================');
+
+        function PersonA(age, weight, name) {
+            this.age = age;
+            this.weight = weight;
+            this.name = name;
+        }
+        //  实例化对象
+        // 如果构造函数有参数，可以传参数
+        let pA1 = new PersonA(30, 70, 'lisi');
+        let pA2 = new PersonA(19, 68, 'caoCao');
+        // 不传参
+        let pA3 = new PersonA; //这里可以不加括号
+        let pA4 = PersonA; //这里不加new就变成将PersonA赋值给pA4变量了，后面对pA4实例化，再传给pA5
+        let pA5 = new pA4;
+        console.log(pA1);
+        console.log(pA2);
+        console.log(pA3);
+        console.log(pA5);
+
+
+
+        console.log('===============函数和构造函数==================');
+
+        // 实例化构造函数，再执行里面代码的同时还会创造一个对象
+        // 实例化构造函数表达式的值是一个对象，函数调用表达式的值是函数的返回值
+        function PersonAA() {
+            console.log('我是PersonAA');
+        }
+
+        // PersonAA当函数使用
+        let res1 = PersonAA();
+
+        // PersonAA当构造函数使用
+        let res2 = new PersonAA();
+
+        console.log(res1); // undefined
+        console.log(res2); // Object
+
+
+
+        console.log('===================this在构造函数===================');
+
+        // this
+        // this是JS内置的一个变量，本质是对象
+        // this通常在函数或方法使用中，代表函数的调用者
+
+
+        // this指向
+        // （1）在构造函数中this指向实例化对象
+        //  (2) 在方法(所谓的本质就是windows对象的方法)中使用this,this指向调用该方法的对象
+
+
+        // 构造函数中的this
+        // this指向构造函数所实例化的对象
+        function User(name) {
+            this.name = name;
+            console.log(this);
+        }
+        const pU1 = new User('李斯'); //this指向这里的形参name
+
+        // 在函数或方法中使用
+        // 指向调用该方法的对象
+        const objA = {
+            name: 'objA',
+            say: function() {
+                console.log(this);
+            }
+        };
+        objA.say(); //this指向objA对象
+
+        const objA2 = {
+            name: 'bojA2',
+            say: objA.say
+        };
+        objA2.say(); //this指向objA2对象
+
+        console.log('把fn赋给onjA2.eat');
+        objA2.eat = fn;
+        objA2.eat();
+
+        // 在函数中使用this
+        function fn() {
+            console.log(this);
+        }
+        fn(); //this指向window对象(省略window)
+        window.fn(); //指向window对象
+        // window对象
+        // (1)window是浏览器端JS的全局对象
+        // (2)打开浏览器,window对象会自动生成
+        // (3)所有的全局属性(全局变量和函数)都是window对象的属性
+        // (4)使用window的属性和方法的时候,通常可以省略window
+        // (5)系统函数alert、prompt、Number、Boolean、Array、Object等也是window属性
+
+        var age = 100;
+
+        function s() {
+            console.log(this);
+        }
+        s(); //this指向widow
+        new s(); //this指向新创建的对象  因此输出  undefined
+
+
+        console.log('====================例子1================');
+
+        function fn() {
+            console.log(this);
+        }
+        const objAA1 = {
+            name: 'objAA1',
+            say: fn
+        };
+        const objAA2 = {
+            name: 'objAA2',
+            content: objAA1
+        };
+        // 最终调用的是objAA1中的say方法，因此this指向objAA1
+        objAA2.content.say(); // this指向objAA1
+        // 严格模式是不允许输出this
+        console.log(this); //window
+
+
+        console.log('====================例子2================');
+
+        var name = '222'; //全局变量 name相当于window属性name
+        var a = {
+            name: '111', //对象a属性为name
+            say: function() {
+                console.log(this.name);
+            }
+        }
+        var fun = a.say; //把a.say的值赋值给fun
+        fun(); //第一次调用为window调用（fun前没打点调用）  在a中查找，找不到则向上查找   输出  222
+        a.say(); //a.say()是对象a调用的  111
+        var b = {
+            name: '333',
+            say: function(func) {
+                func();
+            }
+        }
+        b.say(a.say); //222
+        // 调用b.say,把a.say作为回调函数赋值给参数func
+        // 调用b.say的时候，执行func()语句
+        // func()里面的this指向window（window调用了func）
+        b.say = a.say;
+        b.say(); //333
+
+
+        console.log('====================例子3================');
+
+        var foo = 123;
+
+        function print() {
+            this.foo = 234; //修改this的foo属性值为234
+            console.log(foo); //直接写foo等于window.foo
+        }
+        console.log(foo); //print未执行，foo的值未修改，因此为123
+        // 调用print();window调用了print
+        print(); //234
+        console.log(foo); //234
+
+
+        console.log('====================例子4================');
+
+        var a = 5;
+
+        function test() {
+            a = 0; //预解析后，修改本作用域下的a
+            console.log(a); //本作用域
+            console.log(this.a); //window调用了test
+            var a;
+            console.log(a); //本作用域
+        }
+        test(); //0 5 0
+        new test(); //0 undefined 0
+        // 构造函数中的变量处理和普通函数相同  变量提升
+        // 构造函数中的this指向创造的对象，构造函数中的变量不会作为对象的属性，而新创造的对象并没有属性a
+    </script>
+</body>
+
+</html>

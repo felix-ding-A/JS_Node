@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 创建对象
+        const person = {
+            name: 'zhangsan',
+            age: 18,
+            emali: '1234@qq.com',
+            numList: [12, 34, 123, 45, 67],
+            say: function() {
+                console.log('我梦见你了');
+            },
+            123: 'abc' //不符合命名规范
+        }
+        console.log(person);
+
+        // 读取对象
+        // 方括号的语法
+        console.log(person['name']);
+        person['age'] = 10;
+        console.log(person['age']);
+        person['say']();
+        // 点语法
+        console.log(person.name);
+        person.say();
+        // 以下情况必须使用方括号语法
+        // ①如果对象的属性名不符合命名规范
+        // ②如果使用变量的值作为属性名
+        console.log(person['123']);
+        const ageO = 'age';
+        console.log(person[ageO]); //这里不加引号
+
+        // 遍历对象
+        // object不像Array那样有length属性
+        // 使用for in循环遍历对象每个的属性
+        for (let i in person) {
+            console.log('遍历对象' + i, person[i]); //得到每个属性名
+        }
+
+        // 删除属性
+        // 使用delete打点调用属性名
+        delete person.name;
+        delete person[123];
+        console.log(person);
+
+        // 判断对象中是否包含某个属性
+        // 属性名 in 对象   返回值是布尔值,属性名需加上引号
+        console.log('age' in person);
+        console.log('name' in person);
+    </script>
+</body>
+
+</html>

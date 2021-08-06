@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原型链和构造函数</title>
+</head>
+
+<body>
+    <script>
+        // 定义数组
+        console.log('================Array的原型链===================');
+
+        var arr = [10, 20, 30, 40];
+        // 获取原型
+        // var proto = arr.__proto__;
+        var proto = Array.prototype;
+        console.log(proto);
+        console.log(proto instanceof Array); //false
+        console.log(proto instanceof Object); //true
+
+        // 对象proto的构造函数的Object
+        console.log(proto.__proto__ === Object.prototype); //true
+        // 定义proto2为数组的原型的原型
+        var proto2 = Object.prototype;
+        console.log(proto2.__proto__); //null  最后的原型为空
+
+
+        console.log('================Object的原型链===================');
+        var obj = {
+            name: '张敏'
+        };
+        console.log(obj);
+        // console.log(obj.__proto__);
+        console.log(Object.prototype);
+        // 判断是否是原型的终点
+        console.log(Object.prototype === proto.__proto__); //true
+        console.log(Object.prototype.__proto__); //null
+
+        console.log('================自定义构造函数的原型链===================');
+
+        function User() {
+
+        }
+        var u = new User();
+        // var u_proto=u.__proto__;
+        var u_proto = User.prototype;
+        console.log(u_proto); //Object
+        console.log(u_proto.__proto__ === Object.prototype); //构造函数的原型的原型还是Object
+        console.log(u_proto.__proto__.__proto__); //null
+
+
+
+        // 构造函数本身也是对象
+        console.log('================构造函数本身也是对象===================');
+
+        console.log(Array); //ƒ Array()  
+        console.log(typeof Array); //function
+        console.log(Array.constructor); //ƒ Function(){}   Array的构造函数为Function
+
+        // Array的原型
+        console.log('================Array的原型===================');
+        console.log(Array.__proto__);
+        console.log(Function.prototype);
+        var fProto = Function.prototype;
+        // fProto的构造函数（函数的原型的构造函数）
+        console.log(fProto.__proto__ === Object.prototype); //true   函数的原型就是Object的实例
+
+        // 解释
+        // Array.__proto__;  //指向Array本身的原型 = Function.prototype
+        // Array.prototype;  //指向Array实例的原型 = 数组实例__proto__
+
+        console.log('================Object的原型===================');
+        console.log(Object.__proto__); //ƒ () { [native code] }
+        console.log(typeof Object); //function
+        // Object本身的构造函数是 Function
+        console.log(Object.constructor); //ƒ Function() { [native code] }
+        console.log(Function.prototype); //ƒ () { [native code] }
+
+        console.log('================Function的原型===================');
+        console.log(Function.__proto__); //ƒ () { [native code] }
+        console.log(typeof Function); //function
+        // Function本身的构造函数是Function
+        console.log(Function.constructor); //ƒ Function() { [native code] }
+        console.log(Function.prototype); //ƒ () { [native code] }
+        console.log(Function === Function.constructor); //true
+        console.log(Function.__proto__ === Function.prototype); //true  
+        console.log(Array.__proto__ === Array.prototype); //false
+        console.log(Array.__proto__ === Function.prototype); //true
+
+        // constructor和instanceof
+
+        // constructor  获取该对象的构造函数
+        // 有些情况下，constructor并非获取本对象的构造函数；如数组的原型，  Array.prototype.constructor 返回的是 Array， 但是 Array.prototype 的构造函数是 Object； Array.prototype 的 constructor 属性不是给自己用的，是给数组实例是的。
+
+        // instanceof
+        // 使用 instanceof 判断一个对象是否是构造函数的实例， 判断对象自己的构造函数成立，判断对象与对象原型的构造函数也成立
+        // 如：
+        // 数组 instanceof Array;  // true
+        // 数组 instanceof Object;  // true  因为数组的原型的构造函数是 Object
+
+
+        console.log('================例题一===================');
+        /* var F = function() {};
+
+        Object.prototype.a = function() {}
+        Function.prototype.b = function() {}
+        var F = new F(); */ //请问f有方法a吗？有方法b吗？
+        //对象F的原型链
+        // f->F.prototype ->Object.prototype
+        // 对象 f有 a 方法 没有 b 方法
+        // F的原型链
+        // F -> Function.prototype -> Object.prototype
+
+        console.log('================例题二===================');
+        var F = function() {};
+        Object.prototype.a = function() {
+            console.log('a');
+        };
+        Function.prototype.b = function() {
+            console.log('b');
+        }
+        var f = new F();
+        f.a(); //a
+        F.a(); //a
+        F.b(); //b
+        f.b(); //报错
+
+
+        // 数组的原型是Array.prototype   数组的构造函数是Array
+    </script>
+</body>
+
+</html>
