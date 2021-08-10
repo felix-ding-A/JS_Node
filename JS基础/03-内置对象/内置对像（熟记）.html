@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内置对象</title>
+</head>
+
+<body>
+    <script>
+        // 内置对象的目录
+        /*
+        *   01 Boolean
+            02 Number
+                2.1 属性
+                    Number.MAX_VALUE
+                    Number.MIN_VALUE
+                2.2 方法
+                    toFixed()
+                    toString()
+            03 String
+                3.1 属性
+                    length
+                3.2 方法
+                    indexOf()
+                    lastIndexOf()
+                    slice(start, end)
+                    substring()
+                    substr()
+                    split()
+                    toUpperCase()
+                    toLowerCase()
+                    chatAt()
+                    chatCodeAt()
+                    String.fromCharCode()
+                    replace()
+            04 Math
+                4.1 属性
+                    Math.PI
+                4.2 方法
+                    Math.abs()
+                    Math.sqrt()
+                    Math.pow()
+                    Math.max()
+                    Math.min()
+                    Math.round()
+                    Math.floor()
+                    Math.ceil()
+                    Math.random()
+            05 Date 
+                5.1 创建date对象
+                5.2 方法
+                    Date.now()
+                    Date.UTC()
+                    getYear()
+                    getFullYear()
+                    getMonths()
+                    getDay()
+                    getDate()
+                    getHours()
+                    getMinutes()
+                    getSeconds()
+                    getMilliseconds()
+            06 Array
+                6.1 属性
+                    length
+                6.2 方法
+                    concat()
+                    slice()
+                    join()
+                6.3 修改器方法
+                    push()
+                    pop()
+                    shift()
+                    unshift()
+                    splice()
+                    reverse()
+                    sort()
+                6.4 ES5方法
+                    forEach()
+                    filter()
+                    map()
+                    every()
+                    some()
+                    reduce()
+                    reduceRight()
+                    indexOf()
+                    lastIndexOf()
+            07 Functing
+                7.1 属性
+                    length
+                7.2 方法
+                    call()
+                    apply()
+                    bind() 
+            08 JSON
+                8.1 JSON对象的方法
+                    JSON.parse()
+                    JSON.stringify()
+                8.2 JSON数据格式
+            09 全局对象的方法（全局函数）
+                9.1 属性
+                    NaN
+                    Infinite
+                9.2 方法
+                    eval()
+                    encodeURI()
+                    docodeURI()
+                    isNaN()
+                    isFinite()
+                    parseInt()
+                    parseFloat()
+        */
+        console.log('==========================创建boolean类型数据========================');
+        // 创建Boolean类型数据
+
+        // 直接量方式
+        var b1 = true;
+
+        // 使用转换函数
+        var b2 = Boolean(0);
+
+        // 构造函数方式(对象形态)
+        var b3 = new Boolean(true);
+        console.log(b1, b2, b3);
+        console.log(b1 instanceof Boolean); //false
+        console.log(b3 instanceof Boolean); //true
+        // 原始类型数据可以自动切换值的形态和对象的形态
+        console.log(b1.constructor); //ƒ Boolean()
+
+        console.log('==========================创建Number数据类型========================');
+        // 创建Number数据类型
+        // 定义数字
+        var num = 165.46;
+
+        // Number本身的属性
+        console.log('JS能表示的最大数字：', Number.MAX_VALUE); //1.7976931348623157e+308
+        console.log('JS能表示的最大数字：', Number.MIN_VALUE); //5e-324
+
+        // 数字实例的方法
+        console.log(num);
+        console.log(num.toFixed(5)); //165.46000  四舍五入取整  可以保留指定位数的小数
+        console.log(typeof (num.toFixed(5))); //string
+
+        // number转string且进行进制转换
+        console.log(num.toString(16)); //括号中表示进制数
+
+        console.log('==========================定义字符串========================');
+        // 定义字符串
+        var str = 'hello world';
+
+        // 属性 length  返回字符串的长度
+        console.log(str.length); //11
+
+        // 方法  indexOf()  判断字符串中是否有某个字符  返回字符在字符串中第一次出现的索引位置,不存在返回-1
+        console.log(str.indexOf('o')); //4
+        console.log(str.indexOf('ld')); //9
+        //   lastIndexOf() 返回字符在字符串中最后一次出现的索引位置
+        console.log(str.lastIndexOf('o')); //5
+        console.log(str.lastIndexOf(' ')); //5
+
+        //slice(start, end);   截取字符串一部分（从开始索引到结束索引，结束索引对应的字符不会被截取到）；不写第二个参数，截取到最后
+        console.log(str.slice(2, 5)); //llo
+        console.log(str.slice(2)); //llo world
+
+        //substring(start, end);  同上
+        console.log(str.substring(2, 5)); //llo
+
+        //substr(start, length)  从字符串某一个位置，开始截取一定长度的字符串；不写第二个参数，截取到最后
+        console.log(str.substr(2, 5)); //llo w
+
+        //split([分隔符])   根据分隔符把字符串分割为数组 
+        console.log(str.split('o')); //["hell", " w", "rld"]
+        console.log(str.split('')); // ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]
+
+        //toUpperCase()  转为大写
+        console.log(str.toUpperCase()); //HELLO WORLD
+        console.log(str.toUpperCase('hello')); //HELLO WORLD
+
+        //toLowerCase()  转小写
+        console.log('HELLO WORLD'.toLowerCase()); //hello world
+
+        // charAt()
+        console.log(str.charAt(1)); //e
+
+        //charCodeAt()   返回指定索引的字符的unicode编码
+        console.log(str.charCodeAt(1)); //101
+
+        //String.fromCharCode()  根据unicode编码返回对应的字符
+        console.log(String.fromCharCode(101)); //e
+
+        //replace()  进行字符串替换（只能替换一个，如果全部替换必须用正则）
+        console.log(str.replace('o', '偶'));
+
+
+        console.log('==========================定义Math========================');
+        // 定义Math
+
+        // Math属性
+        // Math.PI
+        console.log(Math.PI); //3.141592653589793
+        // Math方法
+
+        // Math.abs()  求绝对值
+        console.log(Math.abs(-1)); //1
+
+        // Math.sqrt()  求平方根(开方)
+        console.log(Math.sqrt(3)); //1.7320508075688772
+
+        // Math.pow()  求某个数的几次方
+        console.log(Math.pow(2, 3)); //8
+
+        // Math.max()  求所有参数的最大值
+        // Math.min()  求所有参数的最小值
+        console.log(Math.max(1, 1, 45, 13, 0, 456)); //456
+        console.log(Math.min(1, 1, 45, 13, 0, 456)); //0
+
+        // Math.round()  四舍五入取整
+        // Math.floor()  向下取整
+        // Math.ceil()  向上取整
+        console.log(Math.round(123.456)); //123
+        console.log(Math.floor(123.456)); //123
+        console.log(Math.ceil(123.456)); //124
+
+        // Math.random()   
+        console.log(Math.random()); //取0~1 之间的随机数 0可能被取到，1取不到
+        console.log(Math.random() * 10); //取0~10之间的随机数（带小数）
+        console.log(Math.floor(Math.random() * 10)); //取0~10之间的随机整数
+        // Math.floor((Math.random()*(b-a+1))+a)  //取任意a~b之间的整数
+        console.log(Math.floor(Math.random() * 11) + 20); //取20~30之间的随机整数
+
+
+        console.log('==========================定义Date========================');
+        // Date 属性
+        // new Date();  创造的对象包含的是当前的时间
+        console.log(new Date());
+
+        // Date 方法
+        // Date.now()  返回1970-1-1 00：00：00（世界标准时间）至今经过的毫秒数
+        console.log(Date.now());
+
+        // Date.UTC()  返回1970-1-1 00：00：00到指定日期的毫秒数。如：Date.UTC(year,month[date[,hrs[,min[,sec[,ms]]]]])
+        console.log(Date.UTC(2000, 1, 1, 0, 0, 0, 0));
+
+        // getFullYear()  根据本地时间返回指定日期对象的年份（四位数年份时返回四位数字）
+        // 获取本地时间
+        let time = new Date();
+        console.log(time.getFullYear()); //Sat Aug 07 2021 16:29:02 GMT+0800 (中国标准时间)
+        // getMonth()  根据本地时间返回指定日期对象的月份（0~11）
+        console.log(time.getMonth() + 1); //8
+        // getDay()  星期几（0~6）
+        console.log(time.getDay()); //6
+        // getDate()  月份中的第几天（1~31）
+        console.log(time.getDate()); //7
+        // getHours()  小时（0~23）
+        console.log(time.getHours()); //16
+        // getMinutes()  返回分钟（0~59）  
+        // getSeconds()  返回秒（0~59）
+        // getMilliseconds()  返回毫秒数（0~999)
+
+        // 使用Date方法输出中国阅读习惯的当前时间
+        function showTime() {
+            const localTime = new Date();
+            const year = localTime.getFullYear();
+            const month = localTime.getMonth() + 1;
+            const date = localTime.getDate();
+            const week = localTime.getDay();
+            const hour = localTime.getHours();
+            const minute = localTime.getMinutes();
+            const sec = localTime.getSeconds();
+            document.write('现在是：<br>' + year + '年' + month + '月' + date + '日<br>' + '北京时间' + hour + ':' + minute + ':' + sec);
+        }
+        showTime();
+
+        // 创建时间
+        const birthday = new Date(1990, 01, 02, 08, 40, 50);
+        console.log(birthday);
+
+        console.log('==========================定义Array========================');
+        // 属性 length
+        // 方法
+        // (1)访问方法  不改变调用他们的对象的值，只会返回一个新的数组或返回一个期望值
+        // concat(value1[,value2[,...[,valueN]]])  合并  返回一个由当前数组和其他若干数组或若干个非数组值组合而成的新数组
+
+        // slice([begin[,end]])  截取  抽取当前数组中的一段元素组合成一个新数组，数组截取
+
+        // join([separator])  连接所有数组元素组成一个字符串
+        const arr = [1, 2, 3, 4];
+        console.log(arr.join('!')); // 1!2!3!4
+
+        // (2)修改器方法  会调用他们的对象自身的值
+        // push()  尾部添加  返回新数组的长度
+        // pop()  尾部删除  返回删除的元素
+        // shift()  头部删除  返回删除的元素
+        // unshift()  头部添加  返回新长度
+        // sort()  排序
+        // reverse()  反向
+        arr.reverse();
+        console.log(arr); //[4, 3, 2, 1]
+        // splice()  添加或删除
+
+        // (3)ES5方法
+        // forEach()  数组遍历
+        // filter()  数组过滤
+        // map()  返回由回调函数的返回值组成的新数组
+        // every()  如果数组中的每个元素都满足测试函数，则返回true，否则返回false
+        // some()  如果数组中至少有一个元素都满足测试函数，则返回true，否则返回false
+        // reduce()  从左到右为每个数组元素执行一次回调函数，并把上次回调函数的返回值放在一个暂存器中传给下次回调函数，并返回最后一次回调函数的返回值
+
+
+        console.log('==========================定义Function========================');
+        // 属性
+        // length  函数接受参数的个数
+        // 方法
+        // call()  修改this指向  在一个对象的上下文中应用另一个对象的方法；参数能够以列表形式传入
+        // apply()  在一个对象的上下文中应用另一个对象的方法；参数能够以数组形式传入
+
+        function fn(name, age) {
+
+        }
+        console.log(fn.length); //2
+
+        var name = '函数被调用了 window';
+        var obj1 = {
+            name: 'obj1',
+            say: function (age, grade) {
+                this.age = age;
+                this.grade = grade;
+                console.log(this.name);
+            }
+        };
+        var obj2 = {
+            name: 'obj2'
+        }
+        obj1.say(); //obj1
+        obj1.say.call(); //window
+        obj1.say.call(obj2); //obj2   say方法内的this指向obj2   
+        obj1.say.call(obj2, 26, 100); //this指向为obj2
+        console.log(obj2); //{name: "obj2", age: 26, grade: 100}
+
+
+        const echo = obj1.say;
+        echo.apply(); //window
+        echo.apply(obj1); //obj1
+        console.log('=========================apply()添加参数=======================');
+        // apply()添加参数
+        echo.apply(obj1, [10, 3000]);
+        console.log(obj1);
+        obj1.say.apply();
+
+
+        console.log('=========================Array中ES5方法=======================');
+        // 创建数组
+        var users = [{
+            name: '安妮',
+            age: 18,
+            address: '上海'
+        }, {
+            name: '曹操',
+            age: 28,
+            address: '广州'
+        }, {
+            name: '吕布',
+            age: 38,
+            address: '北京'
+        }, {
+            name: '张飞',
+            age: 48,
+            address: '西安'
+        }, {
+            name: '刘备',
+            age: 58,
+            address: '杭州'
+        },];
+        console.log(users);
+        // Array中ES5方法
+        // forEach  遍历数组,参数是回调函数,返回值是undefined（没有返回值），只用来遍历数组，不需要返回值
+        console.log('=========================forEach()方法=======================');
+        users.forEach(function (item, index) { //注意item和index的位置
+            console.log(index, item); //item输出数组中的每个元素   index输出元素的索引
+        });
+
+
+        console.log('=========================filter()方法=======================');
+        // filter()  （filter  过滤）  剔除数组中不合格的值
+        var filterUsers = users.filter(function (item, index) {
+            // filter中返回true或false可以决定这个值的保留还是剔除
+            // return true;
+
+            // 找出数组中小于30岁的
+            // if (item.age > 30) {
+            //     return true;
+            // } else {
+            //     return false;
+            // }
+            return item.age > 30;
+        });
+        console.log(filterUsers);
+
+
+        console.log('=========================map()方法=======================');
+        // map()  返回一个由回调函数的返回值组成的新数组  map不会改变数组本身        
+        var mapUsers = users.map(function (item, index) {
+            // console.log(item);
+            // return item;
+
+            // 所有人的年龄长一岁
+            item.age += 1;
+            return item;
+        });
+        console.log(mapUsers);
+
+
+        console.log('=========================JSON=======================');
+        // JSON.parse()  解析JSON字符串并返回对应的值
+
+        // JSON.stringify()  返回与指定值对应的JSON字符串
+
+        console.log('=========================全局对象=======================');
+        console.log(isFinite(123));  //true
+        // eval()  解析js字符串，后来有JSON后就不再使用  将传入的字符串当js代码执行
+        var strEval = 'var num =100';
+        eval(strEval);  
+        console.log(num);  //100
+
+        // encodeURI()  对网址内容进行转义  转为计算机编码
+        var url='http://www.baidu.com?s=安妮';
+        var enurl=encodeURI(url);
+        console.log(enurl);  //http://www.baidu.com?s=%E5%AE%89%E5%A6%AE
+
+        // decodeURI()  对编码进行解码
+    </script>
+</body>
+
+</html>

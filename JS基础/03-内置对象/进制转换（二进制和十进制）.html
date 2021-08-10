@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>进制转换（二进制和十进制）</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .convert {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            background-color: rgba(129, 197, 40, .4);
+            border-radius: 5%;
+            margin: 100px auto;
+        }
+        
+        .left {
+            width: 180px;
+            height: 240px;
+            border: 2px solid #000;
+            border-radius: 10%;
+            position: absolute;
+            left: 10px;
+            top: 8px;
+        }
+        
+        .right {
+            width: 180px;
+            height: 240px;
+            border: 2px solid #000;
+            border-radius: 10%;
+            position: absolute;
+            right: 10px;
+            top: 8px;
+        }
+        
+        .binaryTitleL,
+        .binaryTitleR {
+            height: 35px;
+            border-bottom: 2px solid #2759e4;
+        }
+        
+        .binaryTitleL h2,
+        .binaryTitleR h2 {
+            line-height: 35px;
+            text-align: center;
+        }
+        
+        .binaryContentL textarea,
+        .binaryContentR textarea {
+            width: 174px;
+            height: 170px;
+            margin-top: 10px;
+            border: 3px solid #2759e4;
+            background-color: rgba(129, 197, 40, .1);
+            resize: none;
+        }
+        
+        .btnL,
+        .btnR {
+            display: inline-block;
+            width: 130px;
+            height: 30px;
+            background-color: rgba(221, 203, 44, 0.4);
+            border-radius: 10%;
+            font-size: 20px;
+            line-height: 30px;
+            /* position: absolute;
+            left: 150px;
+            bottom: 10px; */
+            cursor: pointer;
+        }
+        
+        .btnL {
+            float: left;
+            margin-top: 260px;
+            margin-left: 35px;
+        }
+        
+        .btnR {
+            float: right;
+            margin-top: 260px;
+            margin-right: 35px;
+        }
+        
+        .btnC {
+            float: right;
+            margin-top: 264px;
+            margin-right: 6px;
+        }
+        
+        button:hover {
+            background-color: rgba(34, 149, 202, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="convert">
+        <div class="left">
+            <div class="binaryTitleL">
+                <h2>十进制</h2>
+            </div>
+            <div class="binaryContentL">
+                <textarea name="" id="inputL" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="binaryTitleR">
+                <h2>二进制</h2>
+            </div>
+            <div class="binaryContentR">
+                <textarea name="" id="inputR" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+        <button class="btnL" id="btnL" onclick="swapL()">点我转换>></button>
+        <button class="btnR" id="btnR" onclick="swapR()">点我转换<<</button>
+        <button class="btnC" id="btnC" onclick="swapC()">点我清空</button>
+    </div>
+    <script>
+        // 使用方法  toString()
+        const inputL = document.getElementById('inputL');
+        const inputR = document.getElementById('inputR');
+
+        function swapL() {
+            const btnL = document.getElementById('btnL');
+            // 获取textarea元素
+            // 获取textarea中输入的值,并转为二进制的值
+            let lValue = (Number(inputL.value)).toString(2);
+            // 显示在右边框中
+            inputR.value = lValue;
+        }
+
+        function swapR() {
+            const btnR = document.getElementById('btnR');
+            let numR = inputR.value; //String类型
+            rValue = parseInt(numR, 2);
+            console.log(rValue);
+            inputL.value = rValue;
+            // let rValue = (Number(inputR.value)).toString(10);  //这句话会变成10进制数字转10进制数字
+        }
+
+        function swapC() {
+            const btnC = document.getElementById('btnC');
+            inputL.value = '';
+            inputR.value = '';
+        }
+    </script>
+</body>
+
+</html>

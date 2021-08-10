@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM</title>
+</head>
+
+<body>
+    <script>
+         /* 
+         01 BOM
+            1.1   BOM定义
+                BOM 全称 Browser Object Model，译为浏览器对象模型。
+                BOM 是浏览器为 JavaScript 提供的能够对浏览器进行相关操作的 API。
+
+        02 window对象
+            2.1 属性
+                name	获取/设置窗口的名称。
+                innerWidth	获得浏览器窗口的内容区域的宽度。（只读）
+                innerHeight	获得浏览器窗口的内容区域的高度。（只读）
+                document	对当前窗口所包含文档对象的引用。（只读）
+                location	获取、设置 location 对象, 或者当前的 URL。
+                history	对 history 对象的引用。（只读）                    navigator	对 navigator 对象的引用。（只读）
+                screen	对 screen 对象的引用。（只读）
+            2.2 方法
+                alert()	显示带有一段消息和一个确认按钮的警告框。
+                confirm()	显示带有一段消息以及确认按钮和取消按钮的对话框。
+                prompt()	显示可提示用户输入的对话框。                    open()	打开一个新的浏览器窗口或查找一个已命名的窗口。window.open(strUrl, strWindowName, [strWindowFeatures]);
+                close()	关闭浏览器窗口。只有open() 方法打开的窗口才可以用close() 关闭。
+                print()	打印当前窗口的内容。
+                scrollTo()	滚动到文档中的某个坐标。
+                scrollBy()	在窗口中按指定的偏移量滚动文档。
+                setTimeout()	单次定时
+                clearTimeout()	取消单次定时
+                setInterval()	多次定时
+                clearInterval()	取消多次定时
+            2.3 打开窗口
+                window.open('test.html');  //新窗口打开页面
+
+                window.open('http://www.atguigu.com', 'myWindowName')； //从指定名字的窗口打开页面
+
+                window.open('http://www.atguigu.com', '', 'width=400,height=300');  // 指定打开的窗口大小  
+            2.4 页面滚动
+                滚动到文档中的某个坐标:
+
+                window.scrollTo( 0, 1000 );
+
+                // 设置滚动行为改为平滑的滚动
+                window.scrollTo({ 
+                    top: 1000, 
+                    behavior: "smooth" 
+                });
+                在窗口中按指定的偏移量滚动文档:
+
+                // 向下滚动一页：
+                window.scrollBy(0, window.innerHeight);
+
+                // 向上滚动一页：
+                window.scrollBy(0, window.innerHeight);
+
+                // 平滑滚动
+                window.scrollBy({   
+                top: 100,
+                left: 100,   
+                behavior: "smooth" 
+                }); 
+            2.5 定时器
+                ① 单次定时器
+                    设置定时：
+
+                    // 第一个参数可以传递一个字符串，第二个参数是延迟时间
+                    setTimeout("alert('Hello world!') ", 1000); 
+
+                    // 第一个参数也可以传递一个回调函数，这是推荐的用法
+                    setTimeout(function() { 
+                    alert("Hello world!"); 
+                    }, 1000);
+
+                    // 还可传递更多的参数作为回调函数的参数
+                    setTimeout(myCallback, 500, 'Parameter 1', 'Parameter 2');
+                    取消定时：
+
+                    //设置超时调用
+                    var timeoutId = setTimeout(function() { 
+                    alert("Hello world!"); 
+                    }, 1000); 
+                    //注意：把它取消
+                    clearTimeout(timeoutId);
+                ② 多次定时器
+                    设置定时：
+
+                    // 第一个参数可以传递一个字符串，第二个参数是延迟时间
+                    setInterval ("alert('Hello world!') ", 10000); 
+
+                    // 第一个参数也可以传递一个回调函数，这是推荐的用法
+                    setInterval (function() { 
+                    alert("Hello world!"); 
+                    }, 10000); 
+                    IntervalExample01.htm
+
+                    // 还可传递更多的参数作为回调函数的参数
+                    setInterval(myCallback, 500, 'Parameter 1''Parameter 2');
+                    取消定时:
+
+                    //设置定时
+                    var invalId = setInterval(function() { 
+                    alert("Hello world!"); 
+                    }, 1000); 
+                    //注意：把它取消
+                    clearInterval(timeoutId);
+        3 location 对象
+            location 是最有用的 BOM 对象之一，它提供了与当前窗口中加载的文档有关的信息，还提供了一些导航功能。location 对象的用处不只表现在它保存着当前文档的信息，还表现在它将 URL 解析为独立的片段，让开发人员可以通过不同的属性访问这些片段。
+
+            3.1 属性
+                href	返回当前加载页面的完整URL。直接输出 location 也会返回这个值。
+                protocol	设置或返回页面使用的协议。通常是 http: 或 https:
+                host	返回服务器名称和端口号（如果有）。
+                hostname	返回不带端口号的服务器名称。
+                port	返回URL中指定的端口号。
+                pathname	返回URL中的目录和（或）文件名。
+                search	返回URL的查询字符串。这个字符串以问号开头。
+                hash	返回URL中的hash（#号后跟零或多个字符）。
+            3.2 方法
+                reload()	重新加载 如果设置参数 true，表示强制从浏览器加载。
+                assign()	打开新的页面。
+                replace()	打开新的页面替换旧业面，不会产生历史记录。
+        4 history 对象
+            history 对象提供了操作浏览器会话历史（浏览器地址栏中访问的页面，以及当前页面中通过框架加载的页面）的接口。
+
+            4.1 属性
+                length	历史记录的数量
+            4.2 方法
+                back()	后退一步
+                forward()	前进一步
+                go(n)	前进或后台 n 步
+
+        5 navigator
+            最早由 Netscape Navigator 2.0 引入的 navigator 对象，现在已经成为识别客户端浏览器的事实标准。
+            userAgent	用户代理信息，改属性可以用来检测用户所使用的浏览器。
+        6 screen
+            width	返回屏幕宽度
+            height	返回屏幕高度
+        */
+
+        console.log('====================window对象=======================');
+        console.log('视口的宽度:'+innerWidth);
+        console.log('视口的高度:'+innerHeight);
+        
+        // confirm('点我取消');
+    </script>
+</body>
+
+</html>
