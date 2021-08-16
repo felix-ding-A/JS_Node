@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <div id="box">
+        <p>lkasjdfjafaljfasdf</p>
+        你好！
+        <!--注释-->
+    </div>
+    <div id="wrap"></div>
+    <script>
+        // documnet 节点(重点记忆)
+        console.log(document);
+        console.log('nodeName',document.nodeName);  //#document
+        console.log('nodeName',document.nodeValue);  //null
+        console.log('nodeName',document.nodeType);  //9
+
+        console.log('=============================元素节点===========================');
+        // 元素节点element节点（重点记忆）
+        let box=document.getElementById('box');
+        console.log(box);
+        console.dir(box);  //dir转换输出为string
+        console.log('nodeName',box.nodeName);  //DIV
+        console.log('nodeValue',box.nodeValue);  //null
+        console.log('nodeType',box.nodeType);  //1
+
+        console.log('=============================属性节点===========================');
+        // 属性节点
+        let attr=box.getAttributeNode('id');
+        console.log(attr);
+        console.dir(attr);
+        console.log('nodeName',attr.nodeName);  //id
+        console.log('nodeValue',attr.nodeValue);  //box
+        console.log('nodeTypr',attr.nodeType);  //2
+
+        console.log('=============================文本节点===========================');
+        // 文本节点
+        // 获取”你好“的文本节点
+        console.log(box.childNodes);
+        let textNode=box.childNodes[2];
+        console.log(textNode);
+        console.dir(textNode);
+        console.log('nodeName',textNode.nodeName);  //#text
+        console.log('nodeValue',textNode.nodeValue);  //你好！
+        console.log('nodeType',textNode.nodeType);  //3
+    </script>
+</body>
+</html>

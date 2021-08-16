@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽奖</title>
+    <style>
+        .box {
+            width: 300px;
+            margin: 100px auto;
+        }
+
+        .content {
+            text-align: center;
+            line-height: 100px;
+            font-size: 40px;
+            border: 2px solid #ccc;
+        }
+
+        .box button {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-right-color: #f5f5f5;
+            font-size: 16px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="content">李斯</div>
+        <button>开始</button>
+    </div>
+    <script>
+        // 获取元素
+        var btn = document.querySelector('.box button');
+        var contenNode = document.querySelector('.content');
+        // 数组
+        var nameList = ['王五', '周芷若', '杨贵妃', '秦始皇', '朱元璋', '刘备', '郭靖', '欧阳锋'];
+        // 声明定时器的标记
+        var intervalId = null;
+
+        // 点击事件 (越点越快)
+        btn.onclick = function () {
+            // 判断定时器的开或者关
+            if (intervalId) {  //说明定时器是开启的
+                // 改回按钮的文字
+                btn.innerHTML = '开始';
+                // 清除定时器
+                clearInterval(intervalId);
+                // 定时标记变量也要变化
+                intervalId = null;
+            } else {  //定时器是未开启的状态
+                // 修改btn中的文字
+                btn.innerHTML = '停止';
+
+                // 定时器
+                intervalId = setInterval(function () {
+                    // 随机取索引号
+                    var index = Math.floor(Math.random() * nameList.length);
+                    // 根据随机的索引获取数组的元素
+
+                    contenNode.innerHTML = nameList[index];
+
+                }, 100);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

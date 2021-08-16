@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倒计时-地球爆炸-升级版</title>
+    <style>
+        div {
+            margin: 100px auto;
+            width: 400px;
+            height: 120px;
+            font-size: 30px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+
+        // 存在的问题：倒计时结束，时间不停止，还在继续
+        // 获取元素id
+        const box = document.getElementById('box');
+
+        // 确定倒计时
+        // let sec = 24 * 60 * 60 * 2;  //172800
+
+        // 创建date对象 要爆炸的时间对象
+        let nextDate=new Date(2021,7,17);
+        // 创建date对象 当前的时间对象
+        let currentDate=new Date();
+
+        // 计算爆炸的时间和当前时间差
+        let sec=Math.floor((nextDate.getTime() - currentDate.getTime())/1000);
+
+        // 倒计时主函数  两天后爆炸
+        function countdown() {
+            
+            
+            // 天
+            let day = Math.floor(sec / (24 * 60 * 60));
+            console.log('天', day);
+            // 时
+            let hour = Math.floor((sec - 24 * 60 * 60) / (60 * 60));
+            console.log('时', hour);
+            // 分
+            let min = Math.floor((sec - 24 * 60 * 60 - 60 * 60 * hour) / (60));
+            console.log('分', min);
+            // 秒 这里的剩余秒数不能用sec变量，需要重新命名变量s
+            let s = sec - hour * 3600;
+            let m = Math.floor(s / 60);
+            s -= m * 60;
+            console.log(s);
+            
+            // 如果是个位数，前面补0
+            hour = hour < 10 ? '0' + hour : hour;
+            min = min < 10 ? '0' + min : min;
+            s = s < 10 ? '0' + s : s;
+            
+            // 页面显示
+            let showtime = '距离地球爆炸还剩<br>' + day + '天' + hour + '小时' + min + '分钟' + s + '秒';
+            
+            // 如果sec <=0，停止定时器，爆炸
+            if (sec <= 0) {
+                clearInterval(intervalId);  //停止定时
+                showtime='Game Over!'
+            }
+            box.innerHTML = showtime;
+            // 确定分钟
+
+            // 时间秒数减1
+            sec--;
+            console.log(sec);
+        }
+        countdown();
+
+
+        // 定时器
+        const intervalId = setInterval(countdown, 1000);
+    </script>
+</body>
+
+</html>

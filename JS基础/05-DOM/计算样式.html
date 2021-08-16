@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算样式</title>
+    <style>
+        #box {
+            width: 400px;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" style="border: 2px solid red;height: 200px;"></div>
+
+
+    <script>
+        // 获取元素
+        var box = document.querySelector('#box');
+
+        // 获取元素宽度  css中width的属性的值
+        // getComputedStyle兼容性较差
+        var cssDom = getComputedStyle(box);
+        console.log(cssDom);
+        console.log(cssDom.width);
+        console.log(cssDom.height);
+        console.log(cssDom.border);
+
+        // 获取未设置的属性
+        console.log(cssDom.backgroundColor);  //rgba(0, 0, 0, 0)
+        console.log(cssDom.fontSize); //16px  返回的默认值
+
+
+        console.log('=============================================');
+        //判断如果存在 getComputedStyle，说明不是IE
+        if (window.getComputedStyle) {
+            console.log(getComputedStyle(box).width);
+        } else {  //说明是IE
+            console.log(box.currentStyle.width);
+            console.log(box.currentStyle.border);
+
+        }
+    </script>
+</body>
+
+</html>

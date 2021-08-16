@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电子时钟</title>
+    <style>
+        div {
+            margin: 100px auto;
+            width: 400px;
+            height: 120px;
+            font-size: 30px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        
+        
+        // 使用Date方法输出中国阅读习惯的当前时间
+        function showTime() {
+            // 获取元素id
+            const box = document.getElementById('box');
+            // Date 属性
+            // new Date();  创造的对象包含的是当前的时间
+            console.log(new Date());
+    
+            // Date 方法
+            // Date.now()  返回1970-1-1 00：00：00（世界标准时间）至今经过的毫秒数
+            console.log(Date.now());
+    
+            // Date.UTC()  返回1970-1-1 00：00：00到指定日期的毫秒数。如：Date.UTC(year,month[date[,hrs[,min[,sec[,ms]]]]])
+            console.log(Date.UTC(2000, 1, 1, 0, 0, 0, 0));
+    
+            // getFullYear()  根据本地时间返回指定日期对象的年份（四位数年份时返回四位数字）
+            // 获取本地时间
+            let time = new Date();
+            console.log(time.getFullYear()); //Sat Aug 07 2021 16:29:02 GMT+0800 (中国标准时间)
+            // getMonth()  根据本地时间返回指定日期对象的月份（0~11）
+            console.log(time.getMonth() + 1); //8
+            // getDay()  星期几（0~6）
+            console.log(time.getDay()); //6
+            // getDate()  月份中的第几天（1~31）
+            console.log(time.getDate()); //7
+            // getHours()  小时（0~23）
+            console.log(time.getHours()); //16
+            // getMinutes()  返回分钟（0~59）  
+            // getSeconds()  返回秒（0~59）
+            // getMilliseconds()  返回毫秒数（0~999)
+            let localTime = new Date();
+            let year = localTime.getFullYear();
+            let month = localTime.getMonth() + 1;
+            let date = localTime.getDate();
+            let week = localTime.getDay();
+            let hour = localTime.getHours();
+            let minute = localTime.getMinutes();
+            let sec = localTime.getSeconds();
+
+            month = month < 10 ? '0' + month : month;
+            date = date < 10 ? '0' + date : date;
+            hour = hour < 10 ? '0' + hour : hour;
+            minute = minute < 10 ? '0' + minute : minute;
+            sec = sec < 10 ? '0' + sec : sec;
+            switch (week) {
+                case 0:
+                    week = '天'
+                    break;
+                case 1:
+                    week = '一'
+                    break;
+                case 2:
+                    week = '二'
+                    break;
+                case 3:
+                    week = '三'
+                    break;
+                case 4:
+                    week = '四'
+                    break;
+                case 5:
+                    week = '五'
+                    break;
+                case 6:
+                    week = '六'
+                    break;
+
+                default:
+                    break;
+            }
+            timeShow=('现在是：<br>' + year + '年' + month + '月' + date + '日' + '&nbsp&nbsp&nbsp&nbsp星期' + week + '<br>' + '北京时间' + hour + ':' + minute + ':' + sec);
+            box.innerHTML = timeShow;
+        }
+        showTime();
+        // 秒定时器，让当前显示时间滚动
+        setInterval(showTime,1000);
+
+
+    </script>
+</body>
+
+</html>

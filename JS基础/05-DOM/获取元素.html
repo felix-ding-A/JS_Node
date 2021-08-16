@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取元素</title>
+
+</head>
+
+<body>
+    <div class="box" id="box"></div>
+    <div class="box1" id="box1">
+        <p class="lll">第1个p标签</p>
+        <p class="lll">第2个p标签</p>
+        <p class="lll">第3个p标签</p>
+        <p class="lll">第4个p标签</p>
+        <p class="lll">第5个p标签</p>
+        <p class="lll">第6个p标签</p>
+        
+    </div>
+    <script>
+        // 获取元素的六种方式
+        // （1）ID获取
+        //      document.getElementById()
+
+        // （2）标签名获取
+        // document.getElememtsByTagName()
+        // element.getElementsByTagName()
+
+        // （3）类名获取
+        // document.getElementsByClassName()
+        // element.getElementsByClassName()
+
+        // （4）属性值获取
+        // document.getElementsByName()
+
+        // （5）选择器获取(推荐使用)
+        // document.querySelector()
+        // document.querySelectorAll()
+        // element.querySelector()
+        // element.querySelectorAll()
+        // （6）全部获取
+        // document.all()
+        /*
+        if (document.all) {
+            // 说明是IE浏览器   IE10以及以下版本
+        } else {
+            // 说明非IE浏览器 IE11以及EDGE 
+        }
+        */
+
+        // querySelector练习
+        let choose=document.querySelector('p');  //选择第一个p标签
+        console.log(choose);
+        console.log('第一个子节点',choose.firstChild);
+        console.log('第二个子节点',choose.lastChild);
+        console.log('下一个兄弟节点',choose.nextSibling);
+        console.log('所有子节点',choose.childNodes);
+    </script>
+</body>
+
+</html>

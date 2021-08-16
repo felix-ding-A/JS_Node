@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全选全不选</title>
+</head>
+
+<body>
+    <ul class="item-list">
+        <li>
+            <input type="checkbox" name="" id="">
+            扣篮发生的你发卡机啊卢卡斯的积分垃圾分类看阿萨的开发
+        </li>
+        <li>
+            <input type="checkbox" name="" id="">
+            扣篮发生的你发卡机啊卢卡斯的积分垃圾分类看阿萨的开发
+        </li>
+        <li>
+            <input type="checkbox" name="" id="">
+            扣篮发生的你发卡机啊卢卡斯的积分垃圾分类看阿萨的开发
+        </li>
+        <li>
+            <input type="checkbox" name="" id="">
+            扣篮发生的你发卡机啊卢卡斯的积分垃圾分类看阿萨的开发
+        </li>
+        <li>
+            <input type="checkbox" name="" id="">
+            扣篮发生的你发卡机啊卢卡斯的积分垃圾分类看阿萨的开发
+        </li>
+    </ul>
+    <hr>
+    <button id="btn1">全选</button>
+    <button id="btn2">全不选</button>
+    <button id="btn3">反选</button>
+
+    <script>
+        // 获取元素
+        var btn1 = document.querySelector('#btn1');
+        var btn2 = document.querySelector('#btn2');
+        var btn3 = document.querySelector('#btn3');
+        var inputs = document.querySelectorAll('.item-list input[type="checkbox"]');
+        console.log(inputs);
+
+        // 使用这种方式来改变input的值  inputs[0].checked=true;
+        // 点击全选
+        btn1.onclick = function () {
+            // 遍历所有的input
+            for (let i = 0; i < inputs.length; i++) {
+                inputs[i].checked = true;
+            }
+        }
+
+        // 点击全不选
+        btn2.onclick = function () {
+            // 遍历所有的input
+            for (let i = 0; i < inputs.length; i++) {
+                inputs[i].checked = false;
+            }
+        }
+
+        // 反选
+        btn3.onclick = function () {
+            // 遍历所有的input
+            for (let i = 0; i < inputs.length; i++) {
+                // if (inputs[i].checked) {
+                //     inputs[i].checked = false;
+                // } else {
+                //     inputs[i].checked = true;
+                // }
+                // 取非可以实现取反操作
+                inputs[i].checked = !inputs[i].checked;
+            }
+        }
+    </script>
+</body>
+
+</html>

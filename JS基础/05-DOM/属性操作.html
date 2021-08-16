@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性操作</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <button id="btn1">更改</button>
+    <button id="btn2">变大</button>
+    <hr>
+    <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20171226%2F5f42681aa41b4f598690f55dd63ac4af.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631628771&t=c6476b360653bf72bf57d091f5fcf323" alt="莫迪" title="你好莫迪" width="300" loadpic="data.png"> 
+    <!-- loadpic为自定义属性-->
+
+    <div id="box" data-name="纳尼" data-user-passworld="123456"></div>
+    <script>
+        // 获取元素
+        var imgNode=document.querySelector('img');
+        var btn1=document.querySelector('#btn1');
+        var btn2=document.querySelector('#btn2');
+        var boxNode=document.querySelector('#box');
+
+        btn1.onclick=function(){
+            imgNode.src='http://t14.baidu.com/it/u=3627925049,4275059417&fm=224&app=112&f=PNG?w=503&h=412&s=8FBF7C82748172F10C1597660300E074';
+        }
+
+        btn2.onclick=function(){
+            imgNode.width+=10;
+        }
+
+        // 查看某个属性的值(内置属性)
+        console.log(imgNode.src);
+        console.log(imgNode.alt);
+        console.log(imgNode.title);
+
+        console.log(imgNode.loadpic);  //undefined
+        // 获取自定义属性(代码中书写的属性)
+        //这种方式原样返回属性值
+        console.log(imgNode.getAttribute('loadpic'));
+        console.log(imgNode.getAttribute('src'));  
+
+        // 获取代码中没写的内置属性
+        console.log(imgNode.height);  //0
+        console.log(imgNode.getAttribute('height'));  //null
+
+        // 给属性修改属性值
+        imgNode.setAttribute('loadpic','哈哈哈');
+        imgNode.setAttribute('pic','好好');
+
+
+        // 自定义属性  以 data- 开头的自定义属性
+        console.log(boxNode.getAttribute('data-name'));  //纳尼
+        console.log(boxNode.dataset.name);  //纳尼
+        console.log(boxNode.dataset);
+        // console.log(boxNode.data['user-password']);  语法错误
+        console.log(boxNode.dataset.userPassword);
+
+        // 修改自定义属性值
+        boxNode.dataset.name='曹操';
+        boxNode.dataset.user='丈夫';  //未找到的自定义属性名则自己会生成
+    </script>
+</body>
+</html>
