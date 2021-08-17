@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点击变色</title>
+    <style>
+        .item-list {
+            margin: 100px auto;
+            padding: 0;
+            width: 800px;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            user-select: none;
+            /*文字无法选中*/
+        }
+
+        .item-list .item {
+            margin: 20px;
+            width: 160px;
+            text-align: center;
+            line-height: 60px;
+            border: 2px solid #999;
+            cursor: pointer;
+        }
+
+        .item-list .item.current {
+            /*current点击后调用的样式*/
+            border-color: red;
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="item-list">
+        <li class="item">hello world</li>
+        <li class="item">hello world</li>
+        <li class="item">hello world</li>
+        <li class="item">hello world</li>
+        <li class="item">hello world</li>
+        <li class="item">hello world</li>
+        <li class="item">hello world</li>
+        <li class="item">hello world</li>
+        <li class="item">hello world</li>
+        <li class="item">hello world</li>
+        <li class="item">hello world</li>
+        <li class="item">hello world</li>
+    </ul>
+    <script>
+        // 获取所有li
+        var liNodes = document.querySelectorAll('.item-list .item');
+        // 遍历每个li
+        for (var i = 0; i < liNodes.length; i++) {
+            // 给每个 li 添加 click 事件
+            liNodes[i].onclick = function () {
+                // 判断目前 li 是否是选中的状态 （具有 current 类名就是选中的状态）
+                // if (this.className === 'item current') {
+                //     // 如果此时是选中状态，改为不选中状态
+                //     this.className = 'item';
+                // } else {
+                //     // 如果是不选中状态，改为选中状态
+                //     this.className = 'item current';
+                // }
+
+                // 使用classList修改类名
+                // if (this.className === 'item current') {
+                //     this.classList.remove('current');
+                // } else {
+                //     this.classList.add('current');
+                // }
+
+                // 使用toggle方法添加或者移除current
+                // toggle  如果元素中有current类名，就删掉，没有就添加上
+                this.classList.toggle('current');
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            margin: 100px;
+            padding: 50px;
+            width: 400px;
+            border: 5px solid #999;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <p>hello world</p>
+        <p>hello world</p>
+        <p style="width: 1000px;background-color: rgb(94, 194, 27);">hello world</p>
+        <p>hello world</p>
+        <p>hello world</p>
+        <p>hello world</p>
+    </div>
+
+    <script>
+        // 获取元素
+        var boxNode = document.querySelector('#box');
+
+        // 获取元素尺寸
+        console.log('=======================01 获取元素尺寸=========================');
+        // 输出元素的尺寸 offsetWidth  offsetHeight  包括边框的尺寸
+        console.log('元素的宽度', boxNode.offsetWidth);
+        console.log('元素的高度', boxNode.offsetHeight);
+
+        console.log('====================================================');
+        // clientWidth  除去边框的所有尺寸总和
+        console.log('元素的宽度', boxNode.clientWidth);
+        console.log('元素的高度', boxNode.clientHeight);
+
+        console.log('====================================================');
+        // scrollWidth  不包括边框,包含内边距和溢出的元素宽度
+        console.log('元素的宽度', boxNode.scrollWidth);
+        console.log('元素的高度', boxNode.scrollHeight);
+
+        console.log('====================================================');
+        // getBoundingClientRect()  返回一个对象
+        var client = boxNode.getBoundingClientRect();
+        console.log(client);
+        console.log(client.width);
+        console.log(client.height);
+        // 另一种写法
+        console.log(boxNode.getBoundingClientRect().width, boxNode.getBoundingClientRect().height);
+
+        // 获取元素的位置
+        console.log('=============================02 获取元素的位置=========================');
+        // offset方法  元素在第一个定位的祖先元素上的位置，如果祖先元素没有位置，则在html元素上的位置
+        console.log('offset 元素的top', boxNode.offsetLeft);
+        console.log('offset 元素的left', boxNode.offsetTop);
+        // client方法  获取的是边框的宽度
+        console.log('client 元素的top', boxNode.clientTop);
+        console.log('client 元素的left', boxNode.clientLeft);
+        // scroll方法  内容的位置（可以读写）  生效的前提需要设置父元素overflow:hidden/auto/scroll
+        console.log('scroll 元素的top',boxNode.scrollTop);
+        console.log('scroll 元素的left',boxNode.scrollLeft);
+        // getBoundingClientRect()  返回对象  获取元素出现在视口上的位置
+        console.log(boxNode.getBoundingClientRect().top,boxNode.getBoundingClientRect().left);
+    </script>
+</body>
+
+</html>
