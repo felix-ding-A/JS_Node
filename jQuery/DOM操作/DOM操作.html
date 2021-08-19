@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM操作</title>
+    <style>
+        #box {
+            width: 800px;
+            padding: 20px;
+            min-height: 200px;
+            border: 1px solid #ccc;
+        }
+
+        #box .item {
+            display: inline-block;
+            margin: 10px;
+            border: 1px solid #999;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="append_btn">append</button>
+    <button id="appendTo_btn">appendTo</button>
+    <button id="prepend_btn">prepend_btn</button>
+    <button id="prependTo_btn">prependTo_btn</button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div id="box">
+        <div class="item">hello</div>
+    </div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.js"></script>
+
+    <script>
+        // 内部添加
+        $(function () {
+            // appeend
+            $('#append_btn').click(function () {
+                // 创建新元素，返回jQueryDOM
+                // var newDiv=$('<div>');  这个是空div
+                // var newDiv = $('<div class="item">安妮</div>');
+
+                // append 添加子元素
+                // $('#box').append(newDiv);
+
+                // 上面两部合成一步
+                $('#box').append('<div class="item">安妮</div>');
+
+            });
+
+            // appendTo
+            $('#appendTo_btn').click(function () {
+                // $('<div class="item">appendTo</div>').appendTo($('#box'));
+                // 选择器字符串作为参数
+                $('<div class="item">appendTo</div>').appendTo('#box');
+            });
+
+            // prepend
+            $('#prepend_btn').click(function () {
+                $('#box').prepend('<div class="item">prepend</div>');
+            });
+
+            // prependTo
+            $('#prependTo_btn').click(function () {
+                $('<div class="item">prependTo</div>').prependTo('#box');
+            });
+        })
+    </script>
+</body>
+
+</html>

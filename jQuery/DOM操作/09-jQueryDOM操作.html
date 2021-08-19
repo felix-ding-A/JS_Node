@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 800px;
+            min-height: 200px;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        .item {
+            display: inline-block;
+            margin: 10px;
+            border: 1px solid #999;
+            padding: 10px;
+        }
+        .item.active {
+            border-color:red;
+        }
+    </style>
+</head>
+<body>
+    <button id="append_btn">append</button>
+    <button id="appendTo_btn">appendTo</button>
+    <button id="prepend_btn">prepend</button>
+    <button id="prependTo_btn">prependTo</button>
+    <br>
+    <button id="after_btn">after</button>
+    <button id="insertAfter_btn">inertAfter</button>
+    <button id="before_btn">before</button>
+    <br>
+    <button id="wrap_btn">wrap</button>
+    <button id="wrapAll_btn">wrapAll</button>
+    <button id="wrapInner_btn">wrapInner</button>
+    <button id="unwrap_btn">unwrap</button>
+    <br>
+    <button id="replaceWith_btn">repalceWith</button>
+    <button id="replaceAll_btn">repalceAll</button>
+    <br>
+    <button id="empty_btn">empty</button>
+    <button id="remove_btn">remove 移除选中</button>
+    <button id="detach_btn">detach 移除选中</button>
+    <button id="back_btn">恢复</button>
+    <br>
+    <button id="clone_btn">克隆</button>
+
+    <hr>
+    <br>
+    <br>
+    <br>
+    <div id="box">
+        <div class="item">hello</div>
+        <div class="item">world</div>
+        <div class="item">安妮</div>
+        <div class="item">牛逼</div>
+    </div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.js"></script>
+    <script>
+        $(function(){
+
+            // 每个 item 元素，click事件
+            $('#box .item').click(function(){
+                //this.classList.toggle('active');
+                $(this).toggleClass('active');
+            });
+
+
+
+
+
+            // 内部插入--------------------------------
+            // append
+            $('#append_btn').click(function(){
+                // 创建新元素，返回的是 jQuery DOM
+                //var newDiv = $('<div>'); // 空的div
+                //var newDiv = $('<div>安妮</div>'); // 创新有内容的div
+                   //$('div'); // 参数写成这个样子，获取 div 元素
+                //var newDiv = $('<div class="item">安妮</div>'); // 创新有内容的div
+             
+
+                // append 添加子元素 参数是 jQuery DOM
+                //$('#box').append(newDiv);
+
+
+                // 创建元素和添加元素合二为一  参数是字符串
+                $('#box').append('<div class="item">安妮</div>');
+
+                
+                //console.log()
+
+                // 参数是原生 dom
+                //$('#box').append(document.createElement('div'));
+
+
+            })
+            // appendTo
+            $('#appendTo_btn').click(function(){
+                // jQuery DOM 作为参数
+               // $('<div class="item">appendTo</div>').appendTo($('#box'));
+
+                // 选择器字符串作为参数
+                $('<div class="item">appendTo</div>').appendTo('#box');
+                
+                // 原生 DOM 作为参数
+                //$('<div class="item">appendTo</div>').appendTo(document.querySelector('#box'));
+
+
+            });
+            // prepend
+            $('#prepend_btn').click(function(){
+                $('#box').prepend('<div class="item">prepend</div>');
+            });
+            // prependTo
+            $('#prependTo_btn').click(function(){
+                $('<div class="item">prependTo</div>').prependTo('#box');
+            })
+            
+            // 外部插入 -------------------------------
+            $('#after_btn').click(function(){
+                $('#box').after('<div class="item">after</div>');
+            });
+            $('#insertAfter_btn').click(function(){
+                $('<div class="item">inserAfter</div>').insertAfter('#box');
+            });
+            $('#before_btn').click(function(){
+                $('#box').before('<div class="item">before</div>')
+            })
+      
+            // 包裹操作 =-------------------------------------
+            $('#wrap_btn').click(function(){
+                $('#box .item').wrap('<div class="wrapper"></div>');
+            });
+            $('#wrapAll_btn').click(function(){
+                $('#box .item').wrapAll('<div class="wrapper"></div>');
+            });
+            $('#wrapInner_btn').click(function(){
+                $('#box .item').wrapInner('<div class="wrapper"></div>');
+            });
+            $('#unwrap_btn').click(function(){
+                $('#box .item').unwrap(); // 没有参数
+            });
+
+            // 替换-------------------------------------------
+            $('#replaceWith_btn').click(function(){
+                $('#box .item.active').replaceWith('<div class="item">replaceWith</div>')
+            });
+            $("#replaceAll_btn").click(function(){
+                $('<div class="item">replaceAll</div>').replaceAll('#box .item.active');
+            })
+      
+            // 删除元素-------------------------------------
+            var removedEle = null;
+            $('#empty_btn').click(function(){
+                //$('#box .item').empty();
+                $('#box').empty();
+            });
+            $('#remove_btn').click(function(){
+                // 返回移除掉的元素
+                removedEle = $("#box .item.active").remove();
+            });
+            $('#detach_btn').click(function(){
+                // 返回移除掉的元素
+                removedEle = $("#box .item.active").detach();
+            });
+            $('#back_btn').click(function(){
+                $('#box').append(removedEle);
+            })
+       
+            // 克隆 -------------------------------
+            $('#clone_btn').click(function(){
+                $('#box').clone().prependTo('body');
+            })
+       });
+    </script>
+</body>
+</html>

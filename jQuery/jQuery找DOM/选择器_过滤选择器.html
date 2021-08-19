@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过滤选择器</title>
+    <style>
+        ul,
+        ol {
+            width: 700px;
+
+        }
+
+        li {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #999;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>hello world</li>
+        <li>hello world</li>
+        <li>hello world
+            <ul>
+                <li>hello world</li>
+                <li>hello world</li>
+                <li>hello world</li>
+                <li>hello world</li>
+                <li>hello world</li>
+            </ul>
+        </li>
+        <li>hello world</li>
+    </ul>
+    <ol>
+        <li>hello world</li>
+        <li>hello world</li>
+        <li>hello world</li>
+        <li>hello world</li>
+        <li>hello world</li>
+    </ol>
+    <h1>1234</h1>
+    <h2>ahsjd</h2>
+    <h5>圣诞快乐房价</h5>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.js"></script>
+
+    <script>
+        $(function () {
+            // 修改边框  第一个li :first
+            $('li:last').css('border', '2px solid red');
+            $('li:eq(3)').css('border', '3px solid yellow')  //选择索引为3的li元素
+            // li:odd  奇数行
+            // li:even  偶数行
+            $('li:lt(4)').css('background-color', 'rgba(0,0,0,.2)');  //按索引查找
+
+            $(':header').css('color', 'red');
+
+            // 内容选择器
+            $(':contains("房价")').css('color', 'green');
+
+            // jQuery DOM的方法
+            // 过滤 获取第一个li元素
+            $('li').first().css('border', '3px solid rgba(172,2,189,.6)');
+            // 上面等价于
+            // $('li:first').css('border', '3px solid rgba(172,2,189,.6)');
+        });
+
+    </script>
+</body>
+
+</html>

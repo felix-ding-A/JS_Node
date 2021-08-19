@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>连续操作</title>
+</head>
+
+<body>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.js"></script>
+
+
+    <script>
+        // $('#box').width(200).height(200).css('background-color', 'green').hide(5000).slideDown(3000);
+        // 类似jQuery的连续调用
+        var obj = {
+            width: function () {
+                console.log('width被调用了');
+                return this;
+            },
+            height: function () {
+                console.log('height被调用了');
+                return this;
+            },
+            css: function () {
+                console.log('CSS被调用了');
+                return this;
+            }
+        };
+        obj.width().height().css();
+        // jQuery DOM的每个方法返回的是调用这个方法的对象（this）
+    </script>
+</body>
+
+</html>

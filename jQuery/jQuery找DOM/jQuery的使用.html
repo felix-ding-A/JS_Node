@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <button>按钮</button>
+    <hr>
+    <div id="box"></div>
+
+    <!-- 引入jQuery -->
+    <!-- 本地方式或者cdn方式 -->
+    <!-- <script src="js/jquery-1.12.4.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.js"></script>
+
+    <!-- 自己的代码 -->
+    <script>
+        // 获取元素
+        $('button').click(function () {
+            // jQuery连贯操作  修改宽高背景色显示隐藏
+            $('#box').width(200).height(200).css('background-color', 'green').hide(5000).slideDown(3000);
+        });
+
+        // $为jQuery的核心函数
+        console.log($);
+        console.log(typeof $);  //function
+        console.log(jQuery);
+        console.log(jQuery === $);
+
+        console.log('==================================================');
+        // 核心函数的作用：页面获取元素，以返回值的形式返回  创建元素  把原生DOM对象转为jQuery对象
+        // $相当于document.querySelect
+        var box = $('#box');
+        console.log(box);
+
+        
+    </script>
+</body>
+
+</html>
