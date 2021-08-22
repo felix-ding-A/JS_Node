@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性操作和样式操作</title>
+    <style>
+        #box img {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimage.wangchao.net.cn%2Ffengjing%2F1324809443221.jpg&refer=http%3A%2F%2Fimage.wangchao.net.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1632125869&t=bb1806633f5069b39ca65b205cabcf7f"
+            alt="" id="myImg"
+            loadpic="https://gimg2.baidu.com/image_search/
+            src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fphotoblog%2F1309%2F25%2Fc49%2F26316176_26316176_1380092693834_mthumb.jpg&refer=http%3A%2F%2Fimg.pconline.com.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1632125869&t=679f474b57e8e03b2a4944ab175c652c">
+        <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20190122%2F9903e7691c5b43869f01fdb621afb927.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1632125869&t=79fc33b2ff60f5ca3da2f6582e1bbf64"
+            alt="">
+        <img src="https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/b3b7d0a20cf431ad1b47ee904136acaf2fdd9886.jpg"
+            alt="">
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.js"></script>
+
+    <script>
+        $(function () {
+            // 获取属性的值   pop()  attr()
+            console.log($('#myImg').attr('src'));  // 相当于getAttribute
+            console.log($('#myImg').prop('src'));  // 获取内置属性
+
+            console.log($('#myImg').attr('loadsrc'));
+            console.log($('#myImg').prop('loadsrc'));
+
+            // 设置属性值  prop()  attr()
+            $('#myImg').attr('loagsrc', 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi0.sinaimg.cn%2FIT%2F2009%2F1116%2F2009111674122.jpg&refer=http%3A%2F%2Fi0.sinaimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1632125869&t=6c3a305b64dfc78e7e3cf4931aabcb35');
+        });
+    </script>
+</body>
+
+</html>
