@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件绑定</title>
+    <style>
+        #box {
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">解除事件绑定</button>
+    <div id="box"></div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.js"></script>
+
+    <script>
+        $(function () {
+            // 事件只监听一次
+            // 绑定事件的方式1
+            $('#box').click(function () {
+                $(this).width(500);
+            });
+            $('#box').click(function(){
+                $(this).css('background-color','red')
+            });
+
+            // 绑定事件的方式2
+            $('#box').on('mouseenter',function(){
+                $(this).css('border','3px solid green')
+            }).on('mouseleave',function(){
+                $(this).css('border','5px solid blue')
+            }).one('contextmenu',function(){
+                console.log('被右击了');
+            })
+
+            // 解除事件
+            $('#btn').click(function(){
+                // 谁绑定的都能移除
+                $('#box').off('click');
+            })
+        });
+    </script>
+</body>
+
+</html>
