@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../js01/select2/css/select2.css">
+    <link rel="stylesheet" href="../js01/datetimepicker/jquery.datetimepicker.min.css">
+</head>
+
+<br>
+<h1>插件使用</h1>
+<select name="" id="city">
+    <option value="" id="">北京</option>
+    <option value="" id="">上海</option>
+    <option value="" id="">天津</option>
+    <option value="" id="">东莞</option>
+    <option value="" id="">神州</option>
+    <option value="" id="">西安</option>
+    <option value="" id="">文昌</option>
+    <option value="" id="">酒泉</option>
+    <option value="" id="">玉门</option>
+    <option value="" id="">汉中</option>
+    <option value="" id="">太原</option>
+    <option value="" id="">石家庄</option>
+    <option value="" id="">呼和浩特</option>
+    <option value="" id="">阿拉善</option>
+    <option value="" id="">佛山</option>
+</select>
+<br>
+<input type="text" id="dateInput">
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.js"></script>
+
+<script src="../js01/select2/js/select2.full.js"></script>
+<script src="../js01/datetimepicker/jquery.datetimepicker.full.js"></script>
+<script>
+    // select2插件
+    $(function () {
+        $('#city').select2({
+            width: 100
+        });
+    });
+
+    // datepicker插件
+    $(function(){
+        // 设置语言
+        $.datetimepicker.setLocale('zh')
+        // 调用插件
+
+        $('#dateInput').datetimepicker({
+            datepicker:true,
+            timepicker:true,
+            format:'Y-m-d H:i',
+            value:'2025-12-23 '
+        });
+    }) 
+</script>
+</body>
+
+</html>
