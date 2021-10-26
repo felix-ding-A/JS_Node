@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <Li>
+            <input type="checkbox">出口年均阿喀琉斯的肌肤
+        </Li>
+        <Li>
+            <input type="checkbox">出口年均阿喀琉斯的肌肤
+        </Li>
+        <Li>
+            <input type="checkbox">出口年均阿喀琉斯的肌肤
+        </Li>
+        <Li>
+            <input type="checkbox">出口年均阿喀琉斯的肌肤
+        </Li>
+        <Li>
+            <input type="checkbox">出口年均阿喀琉斯的肌肤
+        </Li>
+        <Li>
+            <input type="checkbox">出口年均阿喀琉斯的肌肤
+        </Li>
+        <Li>
+            <input type="checkbox">出口年均阿喀琉斯的肌肤
+        </Li>
+        <Li>
+            <input type="checkbox">出口年均阿喀琉斯的肌肤
+        </Li>
+        <Li>
+            <input type="checkbox">出口年均阿喀琉斯的肌肤
+        </Li>
+        <Li>
+            <input type="checkbox">出口年均阿喀琉斯的肌肤
+        </Li>
+    </ul>
+    <button id="btn1">全选</button>
+    <button id="btn2">全不选</button>
+    <button id="btn3">反选</button>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.js"></script>
+    <script>
+        $.fn.extend({
+            checkAll: function () {
+                this.prop('checked', true)
+            },
+            unCheckAll: function () {
+                this.prop('checked', false)
+            },
+            reverseCheck: function () {
+                this.each(function (index, item) {
+                    item.checked = !item.checked
+                })
+            }
+        })
+        $('ul :checkbox').checkAll();
+    </script>
+</body>
+
+</html>

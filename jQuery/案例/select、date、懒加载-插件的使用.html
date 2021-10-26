@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../js01/select2/css/select2.css">
+    <link rel="stylesheet" href="../js01/datetimepicker/jquery.datetimepicker.min.css">
+    <style>
+        #imgList img{
+            width: 40%;
+        }
+    </style>
+</head>
+
+<br>
+<h1>插件使用</h1>
+<select name="" id="city">
+    <option value="" id="">北京</option>
+    <option value="" id="">上海</option>
+    <option value="" id="">天津</option>
+    <option value="" id="">东莞</option>
+    <option value="" id="">神州</option>
+    <option value="" id="">西安</option>
+    <option value="" id="">文昌</option>
+    <option value="" id="">酒泉</option>
+    <option value="" id="">玉门</option>
+    <option value="" id="">汉中</option>
+    <option value="" id="">太原</option>
+    <option value="" id="">石家庄</option>
+    <option value="" id="">呼和浩特</option>
+    <option value="" id="">阿拉善</option>
+    <option value="" id="">佛山</option>
+</select>
+
+<br>
+
+<input type="text" id="dateInput">
+
+<br>
+
+<div id="imgList">
+    <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg95.699pic.com%2Fphoto%2F40103%2F3359.gif_wh300.gif%21%2Fgifto%2Ftrue&refer=http%3A%2F%2Fimg95.699pic.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1632125864&t=05d228dd42a1c3461355142ac999e566">
+    <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.16pic.com%2F00%2F88%2F44%2F16pic_8844212_s.jpg&refer=http%3A%2F%2Fimg.16pic.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1632125869&t=781af3421248968dd7ea175dbe29a8f3"
+    alt="">
+    <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fgss0.baidu.com%2F-Po3dSag_xI4khGko9WTAnF6hhy%2Fzhidao%2Fpic%2Fitem%2F4034970a304e251fae75ad03a786c9177e3e534e.jpg&refer=http%3A%2F%2Fgss0.baidu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1632125869&t=5d8d600e214a8909fab769d4e0406ca1"
+    alt="">
+    <img data- src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg11.51tietu.net%2Fpic%2F2016-071418%2F20160714181543xyu10ukncwf221991.jpg&refer=http%3A%2F%2Fimg11.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1632125869&t=9d64c7456de4d9060a52c6dcba1abd41"
+    alt="">
+    <img data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi0.sinaimg.cn%2FIT%2F2009%2F1116%2F2009111674122.jpg&refer=http%3A%2F%2Fi0.sinaimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1632125869&t=6c3a305b64dfc78e7e3cf4931aabcb35"
+    alt="">
+    <img data-src="https://gimg2.baidu.com/image_search/
+    src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fphotoblog%2F1309%2F25%2Fc49%2F26316176_26316176_1380092693834_mthumb.jpg&refer=http%3A%2F%2Fimg.pconline.com.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1632125869&t=679f474b57e8e03b2a4944ab175c652c"
+    alt="">
+    <img data-src="https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/b3b7d0a20cf431ad1b47ee904136acaf2fdd9886.jpg"
+    alt="">
+    <img data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20190122%2F9903e7691c5b43869f01fdb621afb927.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1632125869&t=79fc33b2ff60f5ca3da2f6582e1bbf64"
+    alt="">
+    <img data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimage.wangchao.net.cn%2Ffengjing%2F1324809443221.jpg&refer=http%3A%2F%2Fimage.wangchao.net.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1632125869&t=bb1806633f5069b39ca65b205cabcf7f"
+    alt="">
+
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.js"></script>
+
+<script src="../js01/select2/js/select2.full.js"></script>
+<script src="../js01/datetimepicker/jquery.datetimepicker.full.js"></script>
+<script src="../js01/lazyload/lazyload.js"></script>
+<script src="../js01/easing/jquery.easing.1.3.js"></script>
+<script>
+    // select2插件
+    $(function () {
+        $('#city').select2({
+            width: 100
+        });
+    });
+
+    // datepicker插件
+    $(function(){
+        // 设置语言
+        $.datetimepicker.setLocale('zh')
+        // 调用插件
+
+        $('#dateInput').datetimepicker({
+            datepicker:true,
+            timepicker:true,
+            format:'Y-m-d H:i',
+            value:'2025-12-23 '
+        });
+    });
+
+    // 图片懒加载
+    $(function(){
+        $('#imgList img').lazyload();
+    });
+
+    // 动画
+    $(function(){
+        $('img').first().slideUp(3000,'easeOutQuart');
+    });
+</script>
+</body>
+
+</html>
